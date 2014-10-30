@@ -34,7 +34,9 @@ CREATE EXTENSION multicorn;
 
 Create a FDW table for PgOSQuery:
 ```
-CREATE SERVER pgosquery_srv foreign data wrapper multicorn options (wrapper 'pgosquery.PgOSQuery');
+CREATE SERVER pgosquery_srv foreign data wrapper multicorn options (
+    wrapper 'pgosquery.PgOSQuery'
+);
 
 pgosquery=# CREATE FOREIGN TABLE processes (
     pid integer,
