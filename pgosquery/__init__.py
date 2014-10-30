@@ -18,3 +18,20 @@ class PgOSQuery(ForeignDataWrapper):
                     pass
                 else:
                     yield pinfo
+
+        if self.table_type == "listening_ports":
+            conns = []
+            for proc in psutil.process_iter():
+                try:
+                    for conn in proc.get_connections(kind="inet"):
+                        conns.append((proc.pid, conn))
+                except psutil._error.AccessDenied:
+                    pass
+
+            for pid, conn in conns:
+                if conn.status == "LISTEN":
+                    yield {
+                        "pid": pid,
+                        "address": conn.laddr[0],
+                        "port": conn.laddr[1],
+                    }

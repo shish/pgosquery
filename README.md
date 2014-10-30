@@ -38,43 +38,48 @@ CREATE SERVER pgosquery_srv foreign data wrapper multicorn options (
     wrapper 'pgosquery.PgOSQuery'
 );
 
-pgosquery=# CREATE FOREIGN TABLE processes (
+CREATE FOREIGN TABLE processes (
     pid integer,
     name character varying,
 	username character varying
 ) server pgosquery_srv options (
     tabletype 'processes'
 );  
+
+CREATE FOREIGN TABLE listening_ports (
+    pid integer,
+    address character varying,
+	port integer
+) server pgosquery_srv options (
+    tabletype 'listening_ports'
+);  
 ```
 
 Select data:
 ```
-SELECT pid, name FROM processes;
-
-  pid  | name                                                                                                                
--------+---------------
-     1 | init
-     2 | kthreadd
-     3 | ksoftirqd/0
-     5 | kworker/0:0H
-     7 | rcu_sched
-     8 | rcuos/0
-     9 | rcuos/1
-    10 | rcuos/2
-    11 | rcuos/3
-    12 | rcuos/4
-    13 | rcuos/5
-    14 | rcuos/6
-    15 | rcuos/7
-    16 | rcu_bh
-    17 | rcuob/0
-    18 | rcuob/1
-   ... | ...
+--------------------------------------------------------
+-- get the name, pid and attached port of all processes 
+-- which are listening on all interfaces
+--------------------------------------------------------
+SELECT DISTINCT 
+    process.name, 
+    listening.port, 
+    process.pid
+FROM processes AS process
+JOIN listening_ports AS listening
+ON process.pid = listening.pid
+WHERE listening.address = '127.0.0.1';
 ```
 
 
-Tables
-------
+Table Types
+-----------
 
-So far, the only table type is "processes". Columns are based on psutil's
-attributes, see http://pythonhosted.org/psutil/#psutil.Process
+processes:
+
+Columns are based on psutil's Process attributes, see http://pythonhosted.org/psutil/#psutil.Process
+
+
+listening_ports:
+
+columns: pid, address, port
