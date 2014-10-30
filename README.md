@@ -15,7 +15,7 @@ but I'm sure that could be worked around if you really want to.
 TL;DR Example
 -------------
 
-```
+```sql
 --------------------------------------------------------
 -- get the name, pid and attached port of all processes 
 -- which are listening on localhost interfaces
@@ -52,7 +52,7 @@ Note that either way, you need to restart the postgres server to pick up python 
 
 
 Create a database with multicorn loaded (See http://multicorn.org/#installation for multicorn installation)
-```
+```sql
 CREATE DATABASE pgosquery;
 \c pgosquery;
 
@@ -60,7 +60,7 @@ CREATE EXTENSION multicorn;
 ```
 
 Create a FDW table for PgOSQuery:
-```
+```sql
 CREATE SERVER pgosquery_srv foreign data wrapper multicorn options (
     wrapper 'pgosquery.PgOSQuery'
 );
@@ -83,7 +83,7 @@ CREATE FOREIGN TABLE listening_ports (
 ```
 
 Select data:
-```
+```sql
 --------------------------------------------------------
 -- get the name, pid and attached port of all processes 
 -- which are listening on all interfaces
