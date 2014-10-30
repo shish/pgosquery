@@ -1,5 +1,17 @@
+About
+-----
 
-Install this code to your system python:
+So I saw Facebook's OSQuery, and thought "That looks awesome, but complicated
+to build on top of SQLite. Postgres' Foreign Data Wrappers seem like a much
+better foundation. How long would it take to write the same app on top of
+Postgres?". Turns out it takes about 15 minutes, for someone who's never
+written an FDW before :-)
+
+
+Installation
+------------
+
+Let your system python install know about this module:
 ```
 sudo python setup.py develop
 ```
@@ -34,7 +46,7 @@ Select data:
 SELECT pid, name FROM processes;
 
   pid  | name                                                                                                                
--------+-----------------------------------------------
+-------+---------------
      1 | init
      2 | kthreadd
      3 | ksoftirqd/0
@@ -51,4 +63,12 @@ SELECT pid, name FROM processes;
     16 | rcu_bh
     17 | rcuob/0
     18 | rcuob/1
+   ... | ...
 ```
+
+
+Tables
+------
+
+So far, the only table type is "processes". Columns are based on psutil's
+attributes, see http://pythonhosted.org/psutil/#psutil.Process
