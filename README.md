@@ -28,7 +28,7 @@ WHERE listening.address = '127.0.0.1';
 About
 -----
 
-So I saw Facebook's OSQuery[1], and thought "That looks awesome, but
+So I saw Facebook's [OSQuery][1], and thought "That looks awesome, but
 complicated to build on top of SQLite. Postgres' Foreign Data Wrappers seem
 like a much better foundation. How long would it take to write the same app
 on top of Postgres?". Turns out it takes about 15 minutes, for someone who's
@@ -44,7 +44,7 @@ library. Seems the answers are "very useful" and "very easy". If people want
 to make this more useful by adding more virtual tables, pull requests are
 welcome~
 
-[1] https://github.com/facebook/osquery
+[1]: https://github.com/facebook/osquery
 
 
 Installation
