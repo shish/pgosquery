@@ -7,6 +7,10 @@ better foundation. How long would it take to write the same app on top of
 Postgres?". Turns out it takes about 15 minutes, for someone who's never
 written an FDW before :-)
 
+This approach does have the downside that it runs as the postgres user rather
+than as root, so it can't see the full details of other people's processes,
+but I'm sure that could be worked around if you really want to.
+
 
 Installation
 ------------
