@@ -1,23 +1,3 @@
-About
------
-
-So I saw Facebook's OSQuery, and thought "That looks awesome, but complicated
-to build on top of SQLite. Postgres' Foreign Data Wrappers seem like a much
-better foundation. How long would it take to write the same app on top of
-Postgres?". Turns out it takes about 15 minutes, for someone who's never
-written an FDW before :-)
-
-This approach does have the downside that it runs as the postgres user rather
-than as root, so it can't see the full details of other people's processes,
-but I'm sure that could be worked around if you really want to.
-
-Currently this is just a proof-of-concept to see how useful Postgres' foreign
-data wrappers are, and how easy they are to create with the Multicorn python
-library. Seems the answers are "very useful" and "very easy". If people want
-to make this more useful by adding more virtual tables, pull requests are
-welcome~
-
-
 TL;DR Example
 -------------
 
@@ -43,6 +23,28 @@ WHERE listening.address = '127.0.0.1';
 (1 row)
 
 ```
+
+
+About
+-----
+
+So I saw Facebook's OSQuery[1], and thought "That looks awesome, but
+complicated to build on top of SQLite. Postgres' Foreign Data Wrappers seem
+like a much better foundation. How long would it take to write the same app
+on top of Postgres?". Turns out it takes about 15 minutes, for someone who's
+never written an FDW before :-)
+
+This approach does have the downside that it runs as the postgres user rather
+than as root, so it can't see the full details of other people's processes,
+but I'm sure that could be worked around if you really want to.
+
+Currently this is just a proof-of-concept to see how useful Postgres' foreign
+data wrappers are, and how easy they are to create with the Multicorn python
+library. Seems the answers are "very useful" and "very easy". If people want
+to make this more useful by adding more virtual tables, pull requests are
+welcome~
+
+[1] https://github.com/facebook/osquery
 
 
 Installation
