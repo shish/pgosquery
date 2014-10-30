@@ -71,6 +71,14 @@ ON process.pid = listening.pid
 WHERE listening.address = '127.0.0.1';
 ```
 
+```
+   name   | port | pid  
+----------+------+------
+ postgres | 5432 | 6932
+(1 row)
+
+```
+
 
 Table Types
 -----------
