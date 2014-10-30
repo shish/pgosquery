@@ -24,14 +24,13 @@ class PgOSQuery(ForeignDataWrapper):
             for proc in psutil.process_iter():
                 try:
                     for conn in proc.get_connections(kind="inet"):
-                        conns.append((proc.pid, conn))
+                        if conn.status == "LISTEN":
+                            yield {
+                                "pid": proc.pid,
+                                "address": conn.laddr[0],
+                                "port": conn.laddr[1],
+                            }
+                except psutil.NoSuchProcess:
+                    pass
                 except psutil._error.AccessDenied:
                     pass
-
-            for pid, conn in conns:
-                if conn.status == "LISTEN":
-                    yield {
-                        "pid": pid,
-                        "address": conn.laddr[0],
-                        "port": conn.laddr[1],
-                    }
