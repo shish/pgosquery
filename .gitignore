@@ -1,0 +1,5 @@
+*.un~
+*.pyc
+build/
+dist/
+pgosquery.egg-info/
