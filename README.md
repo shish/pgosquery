@@ -1,28 +1,38 @@
 
-
+Install this code to your system python:
 ```
-sudo python setup.py install
+sudo python setup.py develop
 ```
+"setup.py develop" will link the current directory so you can modify it; "setup.py install" will copy a snapshot of current code to the OS folder.
 
+Note that either way, you need to restart the postgres server to pick up python code changes.
+
+
+Create a database with multicorn loaded (See http://multicorn.org/#installation for multicorn installation)
 ```
 CREATE DATABASE pgosquery;
 \c pgosquery;
 
 CREATE EXTENSION multicorn;
+```
 
+Create a FDW table for PgOSQuery:
+```
 CREATE SERVER pgosquery_srv foreign data wrapper multicorn options (wrapper 'pgosquery.PgOSQuery');
 
 pgosquery=# CREATE FOREIGN TABLE processes (
     pid integer,
-    name character varying
+    name character varying,
+	username character varying
 ) server pgosquery_srv options (
     tabletype 'processes'
 );  
+```
 
+Select data:
+```
 SELECT pid, name FROM processes;
-```
 
-```
   pid  | name                                                                                                                
 -------+-----------------------------------------------
      1 | init
