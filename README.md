@@ -12,6 +12,33 @@ than as root, so it can't see the full details of other people's processes,
 but I'm sure that could be worked around if you really want to.
 
 
+TL;DR Example
+-------------
+
+```
+--------------------------------------------------------
+-- get the name, pid and attached port of all processes 
+-- which are listening on localhost interfaces
+--------------------------------------------------------
+SELECT DISTINCT 
+    process.name, 
+    listening.port, 
+    process.pid
+FROM processes AS process
+JOIN listening_ports AS listening
+ON process.pid = listening.pid
+WHERE listening.address = '127.0.0.1';
+```
+
+```
+   name   | port | pid  
+----------+------+------
+ postgres | 5432 | 6932
+(1 row)
+
+```
+
+
 Installation
 ------------
 
