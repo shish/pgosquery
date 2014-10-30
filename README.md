@@ -11,6 +11,12 @@ This approach does have the downside that it runs as the postgres user rather
 than as root, so it can't see the full details of other people's processes,
 but I'm sure that could be worked around if you really want to.
 
+Currently this is just a proof-of-concept to see how useful Postgres' foreign
+data wrappers are, and how easy they are to create with the Multicorn python
+library. Seems the answers are "very useful" and "very easy". If people want
+to make this more useful by adding more virtual tables, pull requests are
+welcome~
+
 
 TL;DR Example
 -------------
