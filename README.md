@@ -16,12 +16,12 @@ ON process.pid = listening.pid
 WHERE listening.address = '127.0.0.1';
 ```
 
-```
+```psql
    name   | port | pid
 ----------+------+------
  postgres | 5432 | 6932
-(1 row)
 
+(1 row)
 ```
 
 
@@ -106,12 +106,12 @@ ON process.pid = listening.pid
 WHERE listening.address = '127.0.0.1';
 ```
 
-```
+```psql
    name   | port | pid
 ----------+------+------
  postgres | 5432 | 6932
-(1 row)
 
+(1 row)
 ```
 
 
