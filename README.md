@@ -3,12 +3,12 @@ TL;DR Example
 
 ```sql
 --------------------------------------------------------
--- get the name, pid and attached port of all processes 
+-- get the name, pid and attached port of all processes
 -- which are listening on localhost interfaces
 --------------------------------------------------------
-SELECT DISTINCT 
-    process.name, 
-    listening.port, 
+SELECT DISTINCT
+    process.name,
+    listening.port,
     process.pid
 FROM processes AS process
 JOIN listening_ports AS listening
@@ -16,12 +16,12 @@ ON process.pid = listening.pid
 WHERE listening.address = '127.0.0.1';
 ```
 
-```
-   name   | port | pid  
+```psql
+   name   | port | pid
 ----------+------+------
  postgres | 5432 | 6932
-(1 row)
 
+(1 row)
 ```
 
 
@@ -51,8 +51,8 @@ Installation
 ------------
 
 Let your system python install know about this module:
-```
-sudo python setup.py develop
+```bash
+$ sudo python setup.py develop
 ```
 "setup.py develop" will link the current directory so you can modify it; "setup.py install" will copy a snapshot of current code to the OS folder.
 
@@ -79,7 +79,7 @@ CREATE FOREIGN TABLE processes (
 	username character varying
 ) server pgosquery_srv options (
     tabletype 'processes'
-);  
+);
 
 CREATE FOREIGN TABLE listening_ports (
     pid integer,
@@ -87,18 +87,18 @@ CREATE FOREIGN TABLE listening_ports (
 	port integer
 ) server pgosquery_srv options (
     tabletype 'listening_ports'
-);  
+);
 ```
 
 Select data:
 ```sql
 --------------------------------------------------------
--- get the name, pid and attached port of all processes 
+-- get the name, pid and attached port of all processes
 -- which are listening on all interfaces
 --------------------------------------------------------
-SELECT DISTINCT 
-    process.name, 
-    listening.port, 
+SELECT DISTINCT
+    process.name,
+    listening.port,
     process.pid
 FROM processes AS process
 JOIN listening_ports AS listening
@@ -106,12 +106,12 @@ ON process.pid = listening.pid
 WHERE listening.address = '127.0.0.1';
 ```
 
-```
-   name   | port | pid  
+```psql
+   name   | port | pid
 ----------+------+------
  postgres | 5432 | 6932
-(1 row)
 
+(1 row)
 ```
 
 
