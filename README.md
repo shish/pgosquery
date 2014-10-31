@@ -50,6 +50,11 @@ welcome~
 Installation
 ------------
 
+TL;DR 
+```
+sudo pgxn install multicorn && sudo pip install psutil && sudo python setup.py develop && psql -h localhost -U postgres -w < queries.sql
+```
+
 Let your system python install know about this module:
 ```bash
 $ sudo python setup.py develop
