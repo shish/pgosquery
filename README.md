@@ -3,12 +3,12 @@ TL;DR Example
 
 ```sql
 --------------------------------------------------------
--- get the name, pid and attached port of all processes 
+-- get the name, pid and attached port of all processes
 -- which are listening on localhost interfaces
 --------------------------------------------------------
-SELECT DISTINCT 
-    process.name, 
-    listening.port, 
+SELECT DISTINCT
+    process.name,
+    listening.port,
     process.pid
 FROM processes AS process
 JOIN listening_ports AS listening
@@ -17,7 +17,7 @@ WHERE listening.address = '127.0.0.1';
 ```
 
 ```
-   name   | port | pid  
+   name   | port | pid
 ----------+------+------
  postgres | 5432 | 6932
 (1 row)
@@ -79,7 +79,7 @@ CREATE FOREIGN TABLE processes (
 	username character varying
 ) server pgosquery_srv options (
     tabletype 'processes'
-);  
+);
 
 CREATE FOREIGN TABLE listening_ports (
     pid integer,
@@ -87,18 +87,18 @@ CREATE FOREIGN TABLE listening_ports (
 	port integer
 ) server pgosquery_srv options (
     tabletype 'listening_ports'
-);  
+);
 ```
 
 Select data:
 ```sql
 --------------------------------------------------------
--- get the name, pid and attached port of all processes 
+-- get the name, pid and attached port of all processes
 -- which are listening on all interfaces
 --------------------------------------------------------
-SELECT DISTINCT 
-    process.name, 
-    listening.port, 
+SELECT DISTINCT
+    process.name,
+    listening.port,
     process.pid
 FROM processes AS process
 JOIN listening_ports AS listening
@@ -107,7 +107,7 @@ WHERE listening.address = '127.0.0.1';
 ```
 
 ```
-   name   | port | pid  
+   name   | port | pid
 ----------+------+------
  postgres | 5432 | 6932
 (1 row)
