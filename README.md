@@ -51,8 +51,8 @@ Installation
 ------------
 
 Let your system python install know about this module:
-```
-sudo python setup.py develop
+```bash
+$ sudo python setup.py develop
 ```
 "setup.py develop" will link the current directory so you can modify it; "setup.py install" will copy a snapshot of current code to the OS folder.
 
