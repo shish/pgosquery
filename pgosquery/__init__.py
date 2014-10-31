@@ -31,5 +31,5 @@ class PgOSQuery(ForeignDataWrapper):
                             }
                 except psutil.NoSuchProcess:
                     pass
-                except psutil._error.AccessDenied:
+                except psutil.AccessDenied:
                     pass
