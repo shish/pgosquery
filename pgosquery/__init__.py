@@ -20,7 +20,6 @@ class PgOSQuery(ForeignDataWrapper):
                     yield pinfo
 
         if self.table_type == "listening_ports":
-            conns = []
             for proc in psutil.process_iter():
                 try:
                     for conn in proc.get_connections(kind="inet"):
@@ -32,5 +31,5 @@ class PgOSQuery(ForeignDataWrapper):
                             }
                 except psutil.NoSuchProcess:
                     pass
-                except psutil._error.AccessDenied:
+                except psutil.AccessDenied:
                     pass

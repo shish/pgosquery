@@ -1,9 +1,8 @@
-import subprocess
-from setuptools import setup, find_packages, Extension
+from setuptools import setup
 
 setup(
     name='pgosquery',
-    version='0.0.1',
+    version='0.0.2',
     author='Shish',
     license='Postgresql',
     packages=['pgosquery']
