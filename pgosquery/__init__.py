@@ -1,5 +1,6 @@
 from multicorn import ForeignDataWrapper
 import psutil
+import socket
 
 
 class PgOSQuery(ForeignDataWrapper):
@@ -29,6 +30,28 @@ class PgOSQuery(ForeignDataWrapper):
                                 "address": conn.laddr[0],
                                 "port": conn.laddr[1],
                             }
+                except psutil.NoSuchProcess:
+                    pass
+                except psutil.AccessDenied:
+                    pass
+
+        if self.table_type == "net_connections":
+            types = {
+                socket.SOCK_DGRAM: "udp",
+                socket.SOCK_STREAM: "tcp"
+            }
+            def status(string):
+                return None if string == psutil.CONN_NONE else string
+            for proc in psutil.process_iter():
+                try:
+                    for conn in proc.get_connections(kind="inet"):
+                        yield {
+                            "pid": proc.pid,
+                            "address": conn.laddr[0],
+                            "port": conn.laddr[1],
+                            "type": types[conn.type],
+                            "status": status(conn.status)
+                        }
                 except psutil.NoSuchProcess:
                     pass
                 except psutil.AccessDenied:
