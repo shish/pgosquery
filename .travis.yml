@@ -1,7 +1,11 @@
+language: python
+python:
+  - "2.7"
+
 sudo: true
 
 install:
-  - sudo apt install build-essential python-dev postgresql-server-dev-all
+  - sudo apt-get install -y pgxnclient build-essential python-dev postgresql-server-dev-all
   - sudo pgxn install multicorn
   - sudo pip install psutil
   - sudo python setup.py develop
