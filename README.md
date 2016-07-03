@@ -129,11 +129,8 @@ WHERE listening.address = '127.0.0.1';
 Table Types
 -----------
 
-processes:
+`processes`: Columns are based on psutil's Process attributes, see http://pythonhosted.org/psutil/#psutil.Process
 
-Columns are based on psutil's Process attributes, see http://pythonhosted.org/psutil/#psutil.Process
+`listening_ports`: pid, address, port
 
-
-listening_ports:
-
-columns: pid, address, port
+`net_connections`: pid, address, port, type, status
