@@ -1,0 +1,10 @@
+sudo: true
+
+install:
+  - sudo apt install build-essential python-dev postgresql-server-dev-all
+  - sudo pgxn install multicorn
+  - sudo pip install psutil
+  - sudo python setup.py develop
+
+script:
+  - psql -h localhost -U postgres -w < queries.sql
