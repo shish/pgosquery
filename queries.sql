@@ -19,7 +19,7 @@ CREATE EXTENSION IF NOT EXISTS multicorn WITH SCHEMA public;
 
 DROP SERVER IF EXISTS pgosquery_srv CASCADE;
 
-CREATE SERVER pgosquery_srv foreign data wrapper multicorn options (
+CREATE SERVER pgosquery_srv FOREIGN DATA WRAPPER multicorn OPTIONS (
     wrapper 'pgosquery.PgOSQuery'
 );
 
@@ -27,7 +27,7 @@ CREATE FOREIGN TABLE processes (
     pid integer,
     name character varying,
     username character varying
-) server pgosquery_srv options (
+) SERVER pgosquery_srv OPTIONS (
     tabletype 'processes'
 );
 
@@ -35,7 +35,7 @@ CREATE FOREIGN TABLE listening_ports (
     pid integer,
     address character varying,
     port integer
-) server pgosquery_srv options (
+) SERVER pgosquery_srv OPTIONS (
     tabletype 'listening_ports'
 );
 
