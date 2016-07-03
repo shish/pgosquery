@@ -6,12 +6,12 @@ services:
   - postgresql
 
 addons:
-  postgresql: "9.5"
+  postgresql: "9.4"
 
 sudo: true
 
 install:
-  - sudo apt-get install -y pgxnclient build-essential python-dev postgresql-server-dev-9.5
+  - sudo apt-get install -y pgxnclient build-essential python-dev postgresql-server-dev-9.4
   - sudo pgxn install multicorn
   - sudo pip install psutil
   - sudo python setup.py develop
