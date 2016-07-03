@@ -23,7 +23,7 @@ class PgOSQuery(ForeignDataWrapper):
         if self.table_type == "listening_ports":
             for proc in psutil.process_iter():
                 try:
-                    for conn in proc.get_connections(kind="inet"):
+                    for conn in proc.connections(kind="inet"):
                         if conn.status == "LISTEN":
                             yield {
                                 "pid": proc.pid,
@@ -44,7 +44,7 @@ class PgOSQuery(ForeignDataWrapper):
                 return None if string == psutil.CONN_NONE else string
             for proc in psutil.process_iter():
                 try:
-                    for conn in proc.get_connections(kind="inet"):
+                    for conn in proc.connections(kind="inet"):
                         yield {
                             "pid": proc.pid,
                             "address": conn.laddr[0],
